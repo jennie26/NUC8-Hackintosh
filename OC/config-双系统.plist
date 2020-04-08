@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>#Maintainer</key>
+	<string>weachy-维奇</string>
+	<key>#Title</key>
+	<string>OpenCore-NUC8-东篱</string>
+	<key>#Version</key>
+	<string>200408</string>
+	<key>#Tips - CN</key>
+	<string>如果你想了解更多关于 NUC8ixBE 豆子峡谷黑苹果相关知识，请查阅我的文章 https://u.nu/nuc8</string>
+	<key>#Tips - EN</key>
+	<string>If you want to learn more about hackintosh with Intel NUC 'Bean Canyon'. Please visit: https://u.nu/nuc8</string>
 	<key>ACPI</key>
 	<dict>
 		<key>Add</key>
@@ -25,6 +35,8 @@
 			<key>EnableWriteUnprotector</key>
 			<true/>
 			<key>ProvideCustomSlide</key>
+			<true/>
+			<key>SyncRuntimePermissions</key>
 			<true/>
 		</dict>
 	</dict>
@@ -184,6 +196,18 @@
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
+			<dict>
+				<key>BundlePath</key>
+				<string>HibernationFixup.kext</string>
+				<key>Comment</key>
+				<string>Enables native hibernation</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/HibernationFixup</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
 		</array>
 		<key>Patch</key>
 		<array>
@@ -246,6 +270,8 @@
 			<true/>
 			<key>HideSelf</key>
 			<false/>
+			<key>ConsoleAttributes</key>
+			<integer>0</integer>
 			<key>PickerAttributes</key>
 			<integer>0</integer>
 			<key>PickerMode</key>
@@ -272,6 +298,23 @@
 			<key>Vault</key>
 			<string>Optional</string>
 		</dict>
+		<key>Tools</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
+				<string>UEFI Shell</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Name</key>
+				<string>UEFI Shell</string>
+				<key>Path</key>
+				<string>OpenShell.efi</string>
+			</dict>
+		</array>
 	</dict>
 	<key>NVRAM</key>
 	<dict>
@@ -289,7 +332,7 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>-disablegfxfirmware</string>
+				<string>igfxfw=2</string>
 				<key>csr-active-config</key>
 				<data>5wMAAA==</data>
 				<key>prev-lang:kbd</key>
@@ -322,6 +365,8 @@
 				<string>BootOrder</string>
 			</array>
 		</dict>
+		<key>WriteFlash</key>
+		<true/>
 	</dict>
 	<key>PlatformInfo</key>
 	<dict>
@@ -360,8 +405,8 @@
 		<key>Drivers</key>
 		<array>
 			<string>ApfsDriverLoader.efi</string>
-			<string>BootLiquor.efi</string>
-			<string>FwRuntimeServices.efi</string>
+			<string>OpenCanopy.efi</string>
+			<string>OpenRuntime.efi</string>
 			<string>HfsPlus.efi</string>
 		</array>
 		<key>Input</key>
