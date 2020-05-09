@@ -119,6 +119,13 @@
 						<key>port</key>
 						<data>BgAAAA==</data>
 					</dict>
+					<key>HS10</key>
+					<dict>
+						<key>UsbConnector</key>
+						<integer>3</integer>
+						<key>port</key>
+						<data>CgAAAA==</data>
+					</dict>
 					<key>SS01</key>
 					<dict>
 						<key>UsbConnector</key>

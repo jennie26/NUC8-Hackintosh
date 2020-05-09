@@ -3,11 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>#Maintainer</key>
-	<string>weachy-维奇</string>
+	<string>维奇(weachy)</string>
 	<key>#Title</key>
-	<string>OpenCore-NUC8-东篱</string>
-	<key>#Version</key>
-	<string>200408</string>
+	<string>OpenCore-NUC8-200508</string>
 	<key>#Tips - CN</key>
 	<string>如果你想了解更多关于 NUC8ixBE 豆子峡谷黑苹果相关知识，请查阅我的文章 https://u.nu/nuc8</string>
 	<key>#Tips - EN</key>
@@ -23,6 +21,14 @@
 				<true/>
 				<key>Path</key>
 				<string>SSDT-NUC8-BC.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>NUC8-TBT</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-NUC8-TBT.aml</string>
 			</dict>
 		</array>
 	</dict>
@@ -69,6 +75,8 @@
 				<data>BQAAAA==</data>
 				<key>framebuffer-con2-enable</key>
 				<data>AQAAAA==</data>
+				<key>framebuffer-con2-type</key>
+				<data>AAQAAA==</data>
 				<key>framebuffer-patch-enable</key>
 				<data>AQAAAA==</data>
 			</dict>
@@ -198,13 +206,47 @@
 			</dict>
 			<dict>
 				<key>BundlePath</key>
-				<string>HibernationFixup.kext</string>
+				<string>IntelBluetoothFirmware.kext</string>
 				<key>Comment</key>
-				<string>Enables native hibernation</string>
+				<string>Intel bluetooth firmware</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
-				<string>Contents/MacOS/HibernationFixup</string>
+				<string>Contents/MacOS/IntelBluetoothFirmware</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>BundlePath</key>
+				<string>IntelBluetoothInjector.kext</string>
+				<key>Comment</key>
+				<string>Intel bluetooth injector</string>
+				<key>Enabled</key>
+				<true/>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>BundlePath</key>
+				<string>RtWlanU.kext</string>
+				<key>Comment</key>
+				<string>RtWlanU</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/RtWlanU</string>
+				<key>PlistPath</key>
+				<string>Contents/Info.plist</string>
+			</dict>
+			<dict>
+				<key>BundlePath</key>
+				<string>RtWlanU1827.kext</string>
+				<key>Comment</key>
+				<string>RtWlanU1827</string>
+				<key>Enabled</key>
+				<true/>
+				<key>ExecutablePath</key>
+				<string>Contents/MacOS/RtWlanU1827</string>
 				<key>PlistPath</key>
 				<string>Contents/Info.plist</string>
 			</dict>
@@ -242,8 +284,6 @@
 		</array>
 		<key>Quirks</key>
 		<dict>
-			<key>AppleCpuPmCfgLock</key>
-			<true/>
 			<key>AppleXcpmCfgLock</key>
 			<true/>
 			<key>DisableIoMapper</key>
@@ -291,6 +331,8 @@
 			<true/>
 			<key>AllowSetDefault</key>
 			<true/>
+			<key>BootProtect</key>
+			<string>Bootstrap</string>
 			<key>ExposeSensitiveData</key>
 			<integer>3</integer>
 			<key>ScanPolicy</key>
@@ -332,11 +374,13 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>igfxfw=2</string>
+				<string></string>
 				<key>csr-active-config</key>
-				<data>5wMAAA==</data>
+				<data>ZwAAAA==</data>
 				<key>prev-lang:kbd</key>
 				<data>emgtSGFuczoyNTI=</data>
+				<key>ocwv</key>
+				<data>IAUI</data>
 			</dict>
 		</dict>
 		<key>LegacySchema</key>
@@ -400,14 +444,22 @@
 	</dict>
 	<key>UEFI</key>
 	<dict>
+		<key>APFS</key>
+		<dict>
+			<key>EnableJumpstart</key>
+			<true/>
+			<key>HideVerbose</key>
+			<true/>
+			<key>JumpstartHotPlug</key>
+			<true/>
+		</dict>
 		<key>ConnectDrivers</key>
 		<true/>
 		<key>Drivers</key>
 		<array>
-			<string>ApfsDriverLoader.efi</string>
-			<string>OpenCanopy.efi</string>
-			<string>OpenRuntime.efi</string>
 			<string>HfsPlus.efi</string>
+			<string>OpenRuntime.efi</string>
+			<string>OpenCanopy.efi</string>
 		</array>
 		<key>Input</key>
 		<dict>
@@ -431,7 +483,7 @@
 			<key>TextRenderer</key>
 			<string>BuiltinGraphics</string>
 		</dict>
-		<key>Protocols</key>
+		<key>ProtocolOverrides</key>
 		<dict>
 			<key>AppleSmcIo</key>
 			<true/>
